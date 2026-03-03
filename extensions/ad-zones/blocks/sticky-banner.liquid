@@ -1,0 +1,61 @@
+<div
+  class="adzone-sticky"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="sticky"
+  data-adzone-position="{{ block.settings.position }}"
+  data-adzone-show-close="{{ block.settings.show_close_button }}"
+  data-adzone-auto-dismiss="{{ block.settings.auto_dismiss_seconds }}"
+  data-adzone-scroll-trigger="{{ block.settings.scroll_trigger_px }}"
+  role="complementary"
+  aria-label="Sponsored banner"
+  style="display: none;"
+>
+</div>
+
+{% schema %}
+{
+  "name": "Sticky Banner",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard"
+    },
+    {
+      "type": "select",
+      "id": "position",
+      "label": "Position",
+      "options": [
+        { "value": "top", "label": "Top of page" },
+        { "value": "bottom", "label": "Bottom of page" }
+      ],
+      "default": "bottom"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Show close button",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "auto_dismiss_seconds",
+      "label": "Auto-dismiss after (seconds, 0 = never)",
+      "default": 0
+    },
+    {
+      "type": "number",
+      "id": "scroll_trigger_px",
+      "label": "Show after scrolling (px)",
+      "default": 300,
+      "info": "Banner appears after user scrolls this many pixels"
+    }
+  ]
+}
+{% endschema %}

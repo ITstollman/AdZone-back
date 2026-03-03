@@ -1,0 +1,703 @@
+/* ============================================================
+   THEME INTEGRATION — CSS CUSTOM PROPERTIES
+
+   These variables automatically inherit from the Shopify theme
+   when available (Dawn, Sense, Craft, etc. expose these).
+   Merchants can also override --adzone-* in their theme CSS.
+   ============================================================ */
+
+:root {
+  /* Typography — inherit from theme, fall back to system font */
+  --adzone-font-body: var(--font-body-family, inherit);
+  --adzone-font-heading: var(--font-heading-family, var(--adzone-font-body));
+
+  /* Colors — inherit from theme */
+  --adzone-color-text: var(--color-foreground, inherit);
+  --adzone-color-bg: var(--color-background, #fff);
+  --adzone-color-border: var(--color-border, #e5e5e5);
+  --adzone-color-text-muted: var(--color-foreground, #666);
+
+  /* Buttons */
+  --adzone-btn-bg: var(--color-button, #111);
+  --adzone-btn-text: var(--color-button-text, #fff);
+
+  /* Cards */
+  --adzone-card-radius: var(--card-corner-radius, 8px);
+  --adzone-card-bg: var(--color-background, #fff);
+  --adzone-card-image-bg: var(--color-background, #f5f5f5);
+
+  /* Badges */
+  --adzone-badge-bg: var(--color-badge-background, rgba(0, 0, 0, 0.06));
+  --adzone-badge-text: var(--color-badge-foreground, #666);
+  --adzone-sale-bg: var(--color-scheme-accent, #e53935);
+  --adzone-sale-text: #fff;
+
+  /* Spacing */
+  --adzone-card-padding: 12px;
+  --adzone-grid-gap: var(--grid-desktop-horizontal-spacing, 16px);
+
+  /* Skeleton */
+  --adzone-skeleton-bg: var(--color-border, #e5e5e5);
+}
+
+/* ============================================================
+   AD ZONE BASE STYLES
+   ============================================================ */
+
+.adzone-banner,
+.adzone-promoted-product,
+.adzone-carousel,
+.adzone-native-feed,
+.adzone-product-grid {
+  font-family: var(--adzone-font-body);
+  color: var(--adzone-color-text);
+}
+
+.adzone-banner,
+.adzone-promoted-product {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============================================================
+   SKELETON LOADING
+   ============================================================ */
+
+.adzone-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--adzone-skeleton-bg);
+  border-radius: var(--adzone-card-radius);
+  min-height: 100px;
+}
+
+.adzone-skeleton__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
+  );
+  animation: adzone-shimmer 1.5s infinite;
+}
+
+@keyframes adzone-shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.adzone-banner__loading,
+.adzone-promoted-product__loading,
+.adzone-carousel__loading,
+.adzone-native-feed__loading,
+.adzone-product-grid__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: inherit;
+}
+
+/* Legacy spinner (kept for backward compat) */
+.adzone-spinner {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e5e5e5;
+  border-top-color: #999;
+  border-radius: 50%;
+  animation: adzone-spin 0.6s linear infinite;
+}
+
+@keyframes adzone-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================================
+   BANNER AD
+   ============================================================ */
+
+.adzone-banner__link {
+  display: block;
+  line-height: 0;
+}
+
+.adzone-banner__image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity 0.3s ease-out;
+}
+
+.adzone-banner--loaded .adzone-banner__link {
+  animation: adzone-fade-in 0.3s ease-out;
+}
+
+@keyframes adzone-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ============================================================
+   SPONSORED LABEL
+   ============================================================ */
+
+.adzone-label {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+  z-index: 1;
+}
+
+/* ============================================================
+   PRODUCT CARD (shared by promoted product + grid)
+   ============================================================ */
+
+.adzone-product-card {
+  display: block;
+  text-decoration: none;
+  color: var(--adzone-color-text);
+  background: var(--adzone-card-bg);
+  border: 1px solid var(--adzone-color-border);
+  border-radius: var(--adzone-card-radius);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.adzone-product-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.adzone-product-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--adzone-card-image-bg);
+}
+
+.adzone-product-card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.adzone-product-card:hover .adzone-product-card__image-wrap img {
+  transform: scale(1.05);
+}
+
+.adzone-product-card__info {
+  padding: var(--adzone-card-padding);
+  position: relative;
+}
+
+.adzone-product-card__info .adzone-label {
+  position: static;
+  display: inline-block;
+  margin-bottom: 4px;
+  background: var(--adzone-badge-bg);
+  color: var(--adzone-badge-text);
+}
+
+.adzone-product-card__title {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.adzone-product-card__price {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.adzone-product-card__price s {
+  color: #999;
+  font-weight: 400;
+  margin-right: 4px;
+}
+
+.adzone-product-card__sale-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--adzone-sale-bg);
+  color: var(--adzone-sale-text);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.adzone-product-card__cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: var(--adzone-btn-bg);
+  color: var(--adzone-btn-text);
+  border: none;
+  border-radius: var(--buttons-radius, 4px);
+  font-family: var(--adzone-font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.adzone-product-card:hover .adzone-product-card__cta {
+  opacity: 0.85;
+}
+
+/* Inline layout variant */
+.adzone-product-card--inline {
+  display: flex;
+  flex-direction: row;
+}
+
+.adzone-product-card--inline .adzone-product-card__image-wrap {
+  width: 80px;
+  min-width: 80px;
+  aspect-ratio: 1 / 1;
+}
+
+.adzone-product-card--inline .adzone-product-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Minimal layout variant — borderless, relies on theme spacing */
+.adzone-product-card--minimal {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+}
+
+.adzone-product-card--minimal:hover {
+  box-shadow: none;
+}
+
+/* ============================================================
+   CAROUSEL
+   ============================================================ */
+
+.adzone-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.adzone-carousel:focus {
+  outline: 2px solid #4a90d9;
+  outline-offset: 2px;
+}
+
+.adzone-carousel__track {
+  display: flex;
+  width: 100%;
+}
+
+.adzone-carousel__track--slide {
+  transition: transform 0.4s ease-in-out;
+}
+
+.adzone-carousel__track--fade {
+  display: block;
+  position: relative;
+}
+
+.adzone-carousel__slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.adzone-carousel__track--fade .adzone-carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.adzone-carousel__track--fade .adzone-carousel__slide--active {
+  opacity: 1;
+  position: relative;
+}
+
+.adzone-carousel__slide-link {
+  display: block;
+  line-height: 0;
+}
+
+.adzone-carousel__slide-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Dots */
+.adzone-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.adzone-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease;
+}
+
+.adzone-carousel__dot:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.adzone-carousel__dot--active {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Arrows */
+.adzone-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-size: 22px;
+  line-height: 1;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adzone-carousel__arrow:hover {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.adzone-carousel__arrow--prev {
+  left: 12px;
+}
+
+.adzone-carousel__arrow--next {
+  right: 12px;
+}
+
+@media (max-width: 749px) {
+  .adzone-carousel__arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+  .adzone-carousel__arrow--prev { left: 8px; }
+  .adzone-carousel__arrow--next { right: 8px; }
+}
+
+/* ============================================================
+   STICKY BANNER
+   ============================================================ */
+
+.adzone-sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: var(--adzone-card-bg);
+  transition: transform 0.3s ease-out;
+}
+
+.adzone-sticky--bottom {
+  bottom: 0;
+  transform: translateY(100%);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.adzone-sticky--top {
+  top: 0;
+  transform: translateY(-100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.adzone-sticky--visible {
+  transform: translateY(0);
+}
+
+.adzone-sticky--dismissed.adzone-sticky--bottom {
+  transform: translateY(100%);
+}
+
+.adzone-sticky--dismissed.adzone-sticky--top {
+  transform: translateY(-100%);
+}
+
+.adzone-sticky__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adzone-sticky__link {
+  display: block;
+  line-height: 0;
+  width: 100%;
+}
+
+.adzone-sticky__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 120px;
+  object-fit: cover;
+}
+
+.adzone-sticky__close {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.adzone-sticky__close:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.adzone-sticky .adzone-label {
+  top: 4px;
+  right: 44px;
+}
+
+@media (max-width: 749px) {
+  .adzone-sticky__image {
+    max-height: 80px;
+  }
+}
+
+/* ============================================================
+   NATIVE FEED AD
+   ============================================================ */
+
+.adzone-native-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--adzone-card-radius, 0);
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.adzone-native-card:hover {
+  opacity: 0.9;
+}
+
+.adzone-native-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--adzone-card-image-bg);
+}
+
+.adzone-native-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.adzone-native-card:hover .adzone-native-card__media img {
+  transform: scale(1.05);
+}
+
+.adzone-native-card__badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.adzone-native-card__content {
+  padding: 8px 0;
+}
+
+.adzone-native-card__title {
+  margin: 0 0 4px;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: 1.3;
+}
+
+.adzone-native-card__price {
+  font-size: inherit;
+}
+
+.adzone-native-card__compare-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 4px;
+}
+
+.adzone-native-card__current-price {
+  font-weight: 600;
+}
+
+.adzone-native-card__cta {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 16px;
+  border: 1px solid currentColor;
+  border-radius: var(--buttons-radius, 4px);
+  font-family: var(--adzone-font-body);
+  font-size: 13px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.adzone-native-card:hover .adzone-native-card__cta {
+  background: var(--adzone-btn-bg);
+  color: var(--adzone-btn-text);
+  border-color: var(--adzone-btn-bg);
+}
+
+/* ============================================================
+   PRODUCT GRID
+   ============================================================ */
+
+.adzone-product-grid__title {
+  font-family: var(--adzone-font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  text-align: center;
+  color: var(--adzone-color-text);
+}
+
+.adzone-product-grid__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--adzone-grid-columns, 4), 1fr);
+  gap: var(--adzone-grid-gap);
+}
+
+@media (max-width: 999px) {
+  .adzone-product-grid__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .adzone-product-grid__grid {
+    grid-template-columns: 1fr;
+  }
+  .adzone-product-grid__title {
+    font-size: 20px;
+  }
+}
+
+/* ============================================================
+   DARK MODE
+
+   These are fallback overrides for themes that don't expose
+   CSS variables. Themes with proper --color-* variables will
+   already handle dark mode automatically via the custom props.
+   ============================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --adzone-skeleton-bg: #333;
+    --adzone-color-border: #444;
+    --adzone-card-bg: #1a1a1a;
+    --adzone-card-image-bg: #2a2a2a;
+    --adzone-badge-bg: rgba(255, 255, 255, 0.1);
+    --adzone-badge-text: #aaa;
+    --adzone-btn-bg: #eee;
+    --adzone-btn-text: #111;
+    --adzone-sale-bg: #d32f2f;
+  }
+
+  .adzone-skeleton__shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 50%,
+      transparent 100%
+    );
+  }
+
+  .adzone-carousel__dot {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .adzone-carousel__dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .adzone-carousel__dot--active {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  .adzone-carousel__arrow {
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+
+  .adzone-carousel__arrow:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  .adzone-sticky {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .adzone-sticky--top {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  }
+
+  .adzone-native-card__compare-price {
+    color: #777;
+  }
+}

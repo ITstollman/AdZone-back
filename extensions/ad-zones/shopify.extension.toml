@@ -1,0 +1,35 @@
+api_version = "2025-01"
+
+[[extensions]]
+name = "Ad Zones"
+handle = "ad-zones"
+type = "theme"
+
+  [[extensions.blocks]]
+  name = "Ad Banner"
+  file = "blocks/banner-ad.liquid"
+
+  [[extensions.blocks]]
+  name = "Promoted Product"
+  file = "blocks/promoted-product.liquid"
+
+  [[extensions.blocks]]
+  name = "Ad Carousel"
+  file = "blocks/carousel-banner.liquid"
+
+  [[extensions.blocks]]
+  name = "Sticky Banner"
+  file = "blocks/sticky-banner.liquid"
+
+  [[extensions.blocks]]
+  name = "Native Feed Ad"
+  file = "blocks/native-feed-ad.liquid"
+
+  [[extensions.blocks]]
+  name = "Promoted Products Grid"
+  file = "blocks/promoted-products-grid.liquid"
+
+  [[extensions.blocks]]
+  name = "AdZone Tracker"
+  file = "blocks/ad-zone-embed.liquid"
+  target = "head"

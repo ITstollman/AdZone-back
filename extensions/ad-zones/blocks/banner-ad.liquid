@@ -1,0 +1,66 @@
+<div
+  class="adzone-banner"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="banner"
+  role="complementary"
+  aria-label="{{ block.settings.aria_label | default: 'Advertisement' }}"
+  style="
+    width: {{ block.settings.width }};
+    min-height: {{ block.settings.height }}px;
+    background: {{ block.settings.placeholder_color }};
+    position: relative;
+  "
+>
+  <div class="adzone-banner__loading adzone-skeleton" aria-hidden="true">
+    <div class="adzone-skeleton__shimmer"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ad Banner",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard (e.g., homepage-banner-top)"
+    },
+    {
+      "type": "text",
+      "id": "width",
+      "label": "Width",
+      "default": "100%"
+    },
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Height (px)",
+      "default": 250
+    },
+    {
+      "type": "color",
+      "id": "placeholder_color",
+      "label": "Placeholder Background",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sponsored_label",
+      "label": "Show 'Sponsored' label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Advertisement"
+    }
+  ]
+}
+{% endschema %}

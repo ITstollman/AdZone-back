@@ -1,0 +1,26 @@
+<script>
+  // Re-initialize ad zones on Shopify dynamic section rendering
+  document.addEventListener("shopify:section:load", function() {
+    if (typeof window.__adzoneInit === "function") {
+      window.__adzoneInit();
+    }
+  });
+</script>
+
+{{ 'visitor-tracker.js' | asset_url | script_tag }}
+<script src="{{ 'conversion-tracker.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "AdZone Tracker",
+  "target": "head",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enabled",
+      "label": "Enable AdZone ads",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+<div
+  class="adzone-carousel"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="carousel"
+  data-adzone-count="{{ block.settings.max_slides | default: 3 }}"
+  data-adzone-autoplay="{{ block.settings.auto_play }}"
+  data-adzone-interval="{{ block.settings.interval }}"
+  data-adzone-show-dots="{{ block.settings.show_dots }}"
+  data-adzone-show-arrows="{{ block.settings.show_arrows }}"
+  data-adzone-transition="{{ block.settings.transition_style }}"
+  role="region"
+  aria-label="Sponsored content carousel"
+  aria-roledescription="carousel"
+  style="
+    width: 100%;
+    min-height: {{ block.settings.height }}px;
+    position: relative;
+    overflow: hidden;
+  "
+>
+  <div class="adzone-carousel__loading adzone-skeleton" aria-hidden="true">
+    <div class="adzone-skeleton__shimmer"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ad Carousel",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_play",
+      "label": "Auto-play",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Rotation interval (seconds)",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show navigation dots",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show navigation arrows",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "height",
+      "label": "Height (px)",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "max_slides",
+      "label": "Maximum slides",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "transition_style",
+      "label": "Transition style",
+      "options": [
+        { "value": "slide", "label": "Slide" },
+        { "value": "fade", "label": "Fade" }
+      ],
+      "default": "slide"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,134 @@
+{
+  "ad_banner": {
+    "name": "Ad Banner",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "width": {
+        "label": "Width"
+      },
+      "height": {
+        "label": "Height (px)"
+      },
+      "placeholder_color": {
+        "label": "Placeholder Background"
+      },
+      "show_sponsored_label": {
+        "label": "Show 'Sponsored' label"
+      },
+      "aria_label": {
+        "label": "Accessibility label"
+      }
+    }
+  },
+  "promoted_product": {
+    "name": "Promoted Product",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "layout": {
+        "label": "Layout Style"
+      },
+      "show_sponsored_label": {
+        "label": "Show 'Sponsored' label"
+      },
+      "show_price": {
+        "label": "Show price"
+      },
+      "show_cta": {
+        "label": "Show 'Shop Now' button"
+      },
+      "cta_text": {
+        "label": "Button text"
+      }
+    }
+  },
+  "carousel_banner": {
+    "name": "Ad Carousel",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "auto_play": {
+        "label": "Auto-play"
+      },
+      "interval": {
+        "label": "Rotation interval (seconds)"
+      },
+      "show_dots": {
+        "label": "Show navigation dots"
+      },
+      "show_arrows": {
+        "label": "Show navigation arrows"
+      },
+      "height": {
+        "label": "Height (px)"
+      },
+      "max_slides": {
+        "label": "Maximum slides"
+      },
+      "transition_style": {
+        "label": "Transition style"
+      }
+    }
+  },
+  "sticky_banner": {
+    "name": "Sticky Banner",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "position": {
+        "label": "Position"
+      },
+      "show_close_button": {
+        "label": "Show close button"
+      },
+      "auto_dismiss_seconds": {
+        "label": "Auto-dismiss after (seconds)"
+      },
+      "scroll_trigger_px": {
+        "label": "Show after scrolling (px)"
+      }
+    }
+  },
+  "native_feed_ad": {
+    "name": "Native Feed Ad",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "show_add_to_cart": {
+        "label": "Show 'Add to Cart' button"
+      },
+      "show_sponsored_label": {
+        "label": "Show 'Sponsored' badge"
+      }
+    }
+  },
+  "promoted_products_grid": {
+    "name": "Promoted Products Grid",
+    "settings": {
+      "zone_slug": {
+        "label": "Zone Identifier"
+      },
+      "section_title": {
+        "label": "Section title"
+      },
+      "columns": {
+        "label": "Columns"
+      },
+      "max_products": {
+        "label": "Maximum products"
+      },
+      "show_price": {
+        "label": "Show price"
+      },
+      "show_sponsored_label": {
+        "label": "Show 'Sponsored' label"
+      }
+    }
+  }
+}

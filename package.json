@@ -1,0 +1,10 @@
+{
+  "name": "shopify-ads-app",
+  "private": true,
+  "workspaces": ["web", "web/frontend"],
+  "scripts": {
+    "dev": "shopify app dev",
+    "build": "cd web/frontend && npm run build",
+    "deploy": "shopify app deploy"
+  }
+}

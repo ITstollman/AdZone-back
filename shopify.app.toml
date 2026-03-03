@@ -1,0 +1,32 @@
+name = "AdZone"
+client_id = "YOUR_CLIENT_ID"
+application_url = "https://your-app.railway.app"
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+
+[access_scopes]
+scopes = "read_products,read_content"
+
+[auth]
+redirect_urls = [
+  "https://your-app.railway.app/api/auth/callback"
+]
+
+[app_proxy]
+url = "https://your-app.railway.app/api/proxy"
+subpath = "ads"
+prefix = "apps"
+
+[pos]
+embedded = false
+
+[webhooks]
+api_version = "2025-01"
+
+  [webhooks.subscriptions]
+
+    [[webhooks.subscriptions.compliance]]
+    topics = ["customers/data_request", "customers/redact", "shop/redact"]
+    uri = "/api/webhooks"

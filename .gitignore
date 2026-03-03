@@ -1,0 +1,12 @@
+node_modules/
+.env
+dist/
+.shopify/
+*.log
+.DS_Store
+package-lock.json
+
+# Separate repos
+web/frontend/
+admin/
+.claude/

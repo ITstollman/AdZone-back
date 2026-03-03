@@ -1,0 +1,69 @@
+<div
+  class="adzone-promoted-product"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="promoted_product"
+  data-adzone-layout="{{ block.settings.layout }}"
+  data-adzone-show-price="{{ block.settings.show_price }}"
+  data-adzone-show-cta="{{ block.settings.show_cta }}"
+  data-adzone-cta-text="{{ block.settings.cta_text }}"
+  role="complementary"
+  aria-label="Sponsored product"
+>
+  <div class="adzone-promoted-product__loading adzone-skeleton" aria-hidden="true">
+    <div class="adzone-skeleton__shimmer"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promoted Product",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout Style",
+      "options": [
+        { "value": "card", "label": "Card" },
+        { "value": "inline", "label": "Inline" },
+        { "value": "minimal", "label": "Minimal" }
+      ],
+      "default": "card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sponsored_label",
+      "label": "Show 'Sponsored' label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Show 'Shop Now' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button text",
+      "default": "Shop Now"
+    }
+  ]
+}
+{% endschema %}

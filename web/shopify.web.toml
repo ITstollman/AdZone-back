@@ -1,0 +1,6 @@
+[commands]
+dev = "npm run dev"
+
+[roles]
+backend = true
+frontend = false

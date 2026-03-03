@@ -1,0 +1,46 @@
+<div
+  class="adzone-native-feed"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="native_feed"
+  data-adzone-show-add-to-cart="{{ block.settings.show_add_to_cart }}"
+  data-adzone-show-sponsored="{{ block.settings.show_sponsored_label }}"
+  role="complementary"
+  aria-label="Sponsored product"
+  style="display: none;"
+>
+  <div class="adzone-native-feed__loading adzone-skeleton" aria-hidden="true">
+    <div class="adzone-skeleton__shimmer"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Native Feed Ad",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_add_to_cart",
+      "label": "Show 'Add to Cart' button",
+      "default": false,
+      "info": "Clicking will redirect to the product page"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sponsored_label",
+      "label": "Show 'Sponsored' badge",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

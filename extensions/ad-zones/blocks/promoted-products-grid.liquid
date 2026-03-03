@@ -1,0 +1,71 @@
+<div
+  class="adzone-product-grid"
+  data-adzone-slug="{{ block.settings.zone_slug }}"
+  data-adzone-shop="{{ shop.permanent_domain }}"
+  data-adzone-page="{{ request.path }}"
+  data-adzone-type="product_grid"
+  data-adzone-count="{{ block.settings.max_products | default: 4 }}"
+  data-adzone-columns="{{ block.settings.columns }}"
+  data-adzone-show-price="{{ block.settings.show_price }}"
+  data-adzone-section-title="{{ block.settings.section_title }}"
+  data-adzone-show-sponsored="{{ block.settings.show_sponsored_label }}"
+  role="region"
+  aria-label="{{ block.settings.section_title | default: 'Sponsored Products' }}"
+>
+  <div class="adzone-product-grid__loading adzone-skeleton" aria-hidden="true">
+    <div class="adzone-skeleton__shimmer"></div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promoted Products Grid",
+  "target": "section",
+  "javascript": "ad-loader.js",
+  "stylesheet": "ad-styles.css",
+  "settings": [
+    {
+      "type": "text",
+      "id": "zone_slug",
+      "label": "Zone Identifier",
+      "info": "Enter the zone slug from your AdZone dashboard"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section title",
+      "default": "Sponsored Products"
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "label": "Columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "max_products",
+      "label": "Maximum products",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sponsored_label",
+      "label": "Show 'Sponsored' label",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
